@@ -37,10 +37,4 @@ public class MainController {
         batchService.start(jobParameters);
         return "redirect:/static/index.html";
     }
-
-    private User createUser(String line) {
-        String[] split = line.split(",");
-        return new User(split[0], Integer.parseInt(split[1].trim()));
-    }
-
 }
