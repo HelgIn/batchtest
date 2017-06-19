@@ -29,7 +29,7 @@ public class MainController {
     @Autowired
     private BatchService batchService;
 
-    @PostMapping("/")
+    @PostMapping("/upload")
     public String handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException, ClassNotFoundException, JobParametersInvalidException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, InterruptedException {
         String filename = UUID.randomUUID().toString();
         Files.copy(file.getInputStream(), Paths.get(filename));
