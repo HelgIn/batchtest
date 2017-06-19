@@ -1,14 +1,14 @@
 package batch.config;
 
 import batch.model.User;
-import org.springframework.batch.core.*;
-import org.springframework.batch.core.annotation.BeforeStep;
+import org.springframework.batch.core.ChunkListener;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
@@ -18,8 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 
 /**
  * @author okoybaev
@@ -58,7 +57,7 @@ public class BatchConfig {
     public FlatFileItemReader<User> reader(@Value("#{jobParameters['filename']}") String filename) {
         FlatFileItemReader<User> reader = new FlatFileItemReader<>();
 
-        reader.setResource(new ClassPathResource(filename));
+        reader.setResource(new FileSystemResource(filename));
 
         DefaultLineMapper<User> defaultLineMapper = new DefaultLineMapper<>();
         DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
