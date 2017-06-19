@@ -35,6 +35,6 @@ public class MainController {
         Files.copy(file.getInputStream(), Paths.get(filename));
         JobParameters jobParameters = new JobParametersBuilder().addString("filename", filename).toJobParameters();
         batchService.start(jobParameters);
-        return "redirect:/static/index.html";
+        return "redirect:/";
     }
 }
