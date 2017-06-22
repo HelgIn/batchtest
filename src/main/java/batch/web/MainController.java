@@ -1,6 +1,5 @@
 package batch.web;
 
-import batch.model.User;
 import batch.service.BatchService;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
